@@ -1,0 +1,14 @@
+package main;
+
+public class Application {
+	
+	Menu menu = new Menu();
+
+	public static void main(String[] args) {
+		
+		System.out.println("Bem vinda Marina!!!");
+		
+		String[] opcoes = menu.
+	}
+
+}

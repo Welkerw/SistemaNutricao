@@ -1,0 +1,16 @@
+package main;
+
+import business.MenuBusiness;
+
+public class Application {
+	
+	MenuBusiness menu = new MenuBusiness();
+
+	public static void main(String[] args) {
+		
+		System.out.println("Bem vinda Marina!!!");
+		
+		
+	}
+
+}

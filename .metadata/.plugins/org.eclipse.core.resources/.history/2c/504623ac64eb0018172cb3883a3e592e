@@ -1,0 +1,17 @@
+package main;
+
+public class Menu {
+	
+	public void listarOpcoes(String[] atual) {
+		String[] opcoes = new String[10];
+		opcoes[0] = "Cadastrar Paciente";
+		opcoes[1] = "Pesquisar Paciente";
+		opcoes[2] = "Remover Paciente";
+		opcoes[3] = "Cadastrar Consulta";
+		opcoes[4] = "Pesquisar Consulta";
+		opcoes[5] = "Remover Consulta";
+		opcoes[6] = "Cadastrar Dieta";
+		opcoes[7] = "Pesquisar Dieta";
+		opcoes[8] = "Remover Dieta";
+	}
+}

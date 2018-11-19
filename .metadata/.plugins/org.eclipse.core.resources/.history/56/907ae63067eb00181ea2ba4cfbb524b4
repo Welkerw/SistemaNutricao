@@ -1,0 +1,20 @@
+package main;
+
+import business.MenuBusiness;
+
+public class Application {
+
+	public static void main(String[] args) {
+		
+		MenuBusiness menuBusiness = new MenuBusiness();
+		
+		System.out.println("Bem vinda Marina!!! \nDigite a opção que deseja:");
+		
+		String[] opcoes = menuBusiness.listarOpcoes();
+		
+		for (int i = 0; i < opcoes.length; i++) {
+			System.out.println((i + 1) + " - " + opcoes[i]);
+		}
+	}
+
+}

@@ -1,0 +1,12 @@
+package business;
+
+import java.util.Date;
+
+public class ConsultaBusiness {
+	Date dataConsulta;
+	Date horario;
+	Double peso;
+	Double percentGorduraCorporal;
+	String sensacaoFisica;
+	String restricoesAlimentares;
+}

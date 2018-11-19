@@ -1,0 +1,12 @@
+package dto;
+
+import java.util.Date;
+
+public class Consulta {
+	Date dataConsulta;
+	Date horario;
+	Double peso;
+	Double percentGorduraCorporal;
+	String sensacaoFisica;
+	String restricoesAlimentares;
+}

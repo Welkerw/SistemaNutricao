@@ -1,0 +1,39 @@
+package business;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import dto.Consulta;
+
+public class ConsultaBusiness {
+	
+	PacienteBusiness pacienteBusiness = new PacienteBusiness();
+	
+	List<Consulta> consultas = new ArrayList<Consulta>();
+	
+	public ConsultaBusiness(){
+		consultas.add(new Consulta("Welker", new Date(), "16h", Double.valueOf(80), Double.valueOf(15), "nada consta", "Sem restrição"));
+		consultas.add(new Consulta("Walace", new Date(), "16h", Double.valueOf(80), Double.valueOf(15), "nada consta", "Sem restrição"));
+	}
+	
+	public boolean cadastrarConsulta(Consulta novaConsulta) {
+		if(pacienteBusiness.verificarExistePaciente(novaConsulta.getNomePaciente())) {
+			if(!verificarExisteConsulta(novaConsulta)) {
+				consultas.add(novaConsulta);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean verificarExisteConsulta(Consulta consultaPesquisar) {
+		for (Consulta consulta : consultas) {
+			if(consulta.getNomePaciente().equals(consultaPesquisar)
+					&& consulta.getDataConsulta().equals(consultaPesquisar.getDataConsulta())){
+				return true;
+			}
+		}
+		return false;
+	}
+}

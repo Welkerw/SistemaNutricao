@@ -1,0 +1,30 @@
+package test;
+
+import org.junit.Test;
+
+import business.ClienteBusiness;
+import dto.Cliente;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.junit.Assert;
+
+public class ClienteTest {
+
+	@Test
+	public void consultarClientePorNome() {
+		String nomePesquisado = "ace";
+		
+		ClienteBusiness cliente= new ClienteBusiness();
+		List<Cliente> esperado = new ArrayList<Cliente>();
+		//esperado.add(new Cliente("Welker", "Rua Qualquer", "31999999999", "welker@gmail.com", new Date()));
+		esperado.add(new Cliente("Walace", "Rua Qualquer Também", "31988888888", "walace@gmail.com", new Date()));
+		
+		List<Cliente> resultado = cliente.pesquisarClientePorNome(nomePesquisado);
+		
+		Assert.assertEquals(esperado.toArray()[0], resultado.toArray()[0]);
+	}
+	
+}

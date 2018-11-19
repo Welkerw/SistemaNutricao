@@ -1,0 +1,51 @@
+package business;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import dto.Paciente;
+
+public class PacienteBusiness {
+
+	List<Paciente> clientes = new ArrayList<Paciente>();
+	
+	public PacienteBusiness(){
+		clientes.add(new Paciente("Welker", "Rua Qualquer", "31999999999", "welker@gmail.com", new Date()));
+		clientes.add(new Paciente("Walace", "Rua Qualquer Também", "31988888888", "walace@gmail.com", new Date()));
+	}
+	
+	public List<Paciente> pesquisarClientePorNome(String nome){
+		List<Paciente> retorno = new ArrayList<Paciente>();
+		for (Paciente cliente : clientes) {
+			if(cliente.getNome().contains(nome))
+				retorno.add(cliente);
+		}
+		return retorno;
+	}
+	
+	public boolean cadastrarCliente(Paciente novoCliente) {
+		if(!verificarExisteCliente(novoCliente)) {
+			clientes.add(novoCliente);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean verificarExisteCliente(Paciente clientePesquisado) {
+		for (Paciente cliente : clientes) {
+			if(cliente.getNome().equals(clientePesquisado.getNome())){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean removerCliente(Paciente clienteRemover) {
+		if(verificarExisteCliente(clienteRemover)) {
+			clientes.remove(clienteRemover);
+			return true;
+		}
+		return false;
+	}
+}

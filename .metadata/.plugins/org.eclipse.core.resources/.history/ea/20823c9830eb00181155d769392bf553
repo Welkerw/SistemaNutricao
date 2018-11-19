@@ -1,0 +1,21 @@
+package business;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import dto.Consulta;
+import dto.Paciente;
+
+public class ConsultaBusiness {
+	
+	List<Consulta> consultas = new ArrayList<Consulta>();
+	
+	public boolean cadastrarConsulta(Consulta novaConsulta) {
+		if(!verificarExisteConsulta(novaConsulta)) {
+			consultas.add(novaConsulta);
+			return true;
+		}
+		return false;
+	}
+}

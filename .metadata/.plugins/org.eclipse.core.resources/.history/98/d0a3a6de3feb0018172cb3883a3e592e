@@ -1,0 +1,50 @@
+package test;
+
+import java.util.Date;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import business.ConsultaBusiness;
+import dto.Consulta;
+
+public class ConsultaTest {
+	
+	ConsultaBusiness consultaBusiness = new ConsultaBusiness();
+	
+	@Test
+	public void cadastrarConsultaSucesso() {
+		Consulta novaConsulta = new Consulta("Welker", new Date(), "16h", Double.valueOf(80), Double.valueOf(15), "nada consta", "Sem restrição");
+		
+		Assert.assertTrue(consultaBusiness.cadastrarConsulta(novaConsulta));
+	}
+	
+	@Test
+	public void verificarExisteConsultaFalha() {
+		Consulta novaConsulta = new Consulta("Pedro", new Date(), "16h", Double.valueOf(80), Double.valueOf(15), "nada consta", "Sem restrição");
+
+		Assert.assertFalse(consultaBusiness.verificarExisteConsulta(novaConsulta));
+	}
+	
+	@Test
+	public void verificarExisteConsultaSucesso() {
+		Consulta novaConsulta = new Consulta("Welker", new Date(), "16h", Double.valueOf(80), Double.valueOf(15), "nada consta", "Sem restrição");
+
+		Assert.assertTrue(consultaBusiness.verificarExisteConsulta(novaConsulta));
+	}
+	
+	@Test
+	public void removerConsultaSucesso() {
+		Consulta novaConsulta = new Consulta("Welker", new Date(), "16h", Double.valueOf(80), Double.valueOf(15), "nada consta", "Sem restrição");
+		
+		Assert.assertTrue(consultaBusiness.removerConsulta(novaConsulta));
+	}
+	
+	@Test
+	public void removerConsultaFalha() {
+		Consulta novaConsulta = new Consulta("Pedro", new Date(), "16h", Double.valueOf(80), Double.valueOf(15), "nada consta", "Sem restrição");
+		
+		Assert.assertFalse(consultaBusiness.removerConsulta(novaConsulta));
+	}
+	
+}

@@ -1,0 +1,17 @@
+package business;
+
+import java.util.Date;
+
+import dto.Consulta;
+import dto.Paciente;
+
+public class ConsultaBusiness {
+	
+	public boolean cadastrarConsulta(Consulta novaConsulta) {
+		if(!verificarExisteConsulta(novaConsulta)) {
+			consultas.add(novaConsulta);
+			return true;
+		}
+		return false;
+	}
+}

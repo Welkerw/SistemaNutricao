@@ -1,0 +1,72 @@
+package test;
+
+import org.junit.Test;
+
+import business.PacienteBusiness;
+import dto.Paciente;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.junit.Assert;
+
+public class PacienteTest {
+	
+	PacienteBusiness clienteBusiness= new PacienteBusiness();
+
+	@Test
+	public void consultarClientePorNomeSucesso() {
+		String nomePesquisado = "ace";
+		
+		List<Paciente> esperado = new ArrayList<Paciente>();
+		esperado.add(new Paciente("Walace", "Rua Qualquer Também", "31988888888", "walace@gmail.com", new Date()));
+		
+		List<Paciente> resultado = clienteBusiness.pesquisarClientePorNome(nomePesquisado);
+		
+		Assert.assertEquals(esperado.toArray()[0].getClass().getName(), resultado.toArray()[0].getClass().getName());
+	}
+	
+	@Test
+	public void cadastrarClienteSucesso() {
+		Paciente novoCliente = new Paciente("Joaquina", "Rua Qualquer Também", "31988888888", "walace@gmail.com", new Date());
+		
+		Assert.assertTrue(clienteBusiness.cadastrarCliente(novoCliente));
+	}
+	
+	@Test
+	public void cadastrarClienteFalha() {
+		Paciente novoCliente = new Paciente("Walace", "Rua Qualquer Também", "31988888888", "walace@gmail.com", new Date());
+		
+		Assert.assertFalse(clienteBusiness.cadastrarCliente(novoCliente));
+	}
+	
+	@Test
+	public void verificarExisteClienteSucesso() {
+		Paciente novoCliente = new Paciente("Walace", "Rua Qualquer Também", "31988888888", "walace@gmail.com", new Date());
+		
+		Assert.assertTrue(clienteBusiness.verificarExisteCliente(novoCliente));
+	}
+	
+	@Test
+	public void verificarExisteClienteFalha() {
+		Paciente novoCliente = new Paciente("Maria", "Rua Qualquer Também", "31988888888", "walace@gmail.com", new Date());
+		
+		Assert.assertFalse(clienteBusiness.verificarExisteCliente(novoCliente));
+	}
+	
+	@Test
+	public void removerClienteSucesso() {
+		Paciente novoCliente = new Paciente("Walace", "Rua Qualquer Também", "31988888888", "walace@gmail.com", new Date());
+
+		Assert.assertTrue(clienteBusiness.removerCliente(novoCliente));
+	}
+	
+	@Test
+	public void removerClienteFalha() {
+		Paciente novoCliente = new Paciente("Joao", "Rua Qualquer Também", "31988888888", "walace@gmail.com", new Date());
+
+		Assert.assertFalse(clienteBusiness.removerCliente(novoCliente));
+	}
+	
+}

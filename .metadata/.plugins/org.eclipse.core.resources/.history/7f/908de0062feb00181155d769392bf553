@@ -1,0 +1,22 @@
+package test;
+
+import java.util.Date;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import business.ConsultaBusiness;
+import dto.Paciente;
+
+public class ConsultaTest {
+	
+	ConsultaBusiness consultaBusiness;
+	
+	@Test
+	public void cadastrarConsultaSucesso() {
+		Paciente novaConsulta = new Paciente("Joaquina", "Rua Qualquer Também", "31988888888", "walace@gmail.com", new Date());
+		
+		Assert.assertTrue(PacienteBusiness.cadastrarConsulta(novaConsulta));
+	}
+	
+}

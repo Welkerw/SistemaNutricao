@@ -1,0 +1,30 @@
+package test;
+
+import org.junit.Test;
+
+import business.Cliente;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Assert;
+
+public class ClienteTest {
+
+	@Test
+	public void consultarClientePorNome() {
+		String nomePesquisado = "ACE";
+		
+		Cliente cliente= new Cliente();
+		List<String> esperado = new ArrayList<String>();
+		esperado.add("WELKER WALACE DOS SANTOS");
+		esperado.add("WELDER WALACE DOS SANTOS");
+		
+		List<String> resultado = cliente.pesquisarClientePorNome(nomePesquisado);
+		
+		Assert.assertEquals(esperado, resultado);
+	}
+	
+	@Test 
+	public void 
+}

@@ -1,0 +1,23 @@
+package business;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Cliente {
+
+	List<String> clientes = new ArrayList<String>();
+	
+	public Cliente(){
+		clientes.add("WELKER WALACE DOS SANTOS");
+		clientes.add("WELDER WALACE DOS SANTOS");
+	}
+	
+	public List<String> pesquisarClientePorNome(String nome){
+		List<String> retorno = new ArrayList<String>();
+		for (String cliente : clientes) {
+			if(cliente.contains(nome))
+				retorno.add(cliente);
+		}
+		return retorno;
+	}
+}

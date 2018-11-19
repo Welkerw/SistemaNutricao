@@ -1,0 +1,38 @@
+package business;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import dto.Cliente;
+
+public class ClienteBusiness {
+
+	List<Cliente> clientes = new ArrayList<Cliente>();
+	
+	public ClienteBusiness(){
+		clientes.add(new Cliente("Welker", "Rua Qualquer", "31999999999", "welker@gmail.com", new Date()));
+		clientes.add(new Cliente("Walace", "Rua Qualquer Também", "31988888888", "walace@gmail.com", new Date()));
+	}
+	
+	public List<Cliente> pesquisarClientePorNome(String nome){
+		List<Cliente> retorno = new ArrayList<Cliente>();
+		for (Cliente cliente : clientes) {
+			if(cliente.getNome().contains(nome))
+				retorno.add(cliente);
+		}
+		return retorno;
+	}
+	
+	public boolean cadastrarCliente(Cliente novoCliente) {
+		for (Cliente cliente : clientes) {
+			if(cliente.getNome().equals(novoCliente.getNome())){
+				return false;
+			}
+		}
+		
+		clientes.add(novoCliente);
+		return true;
+		
+	}
+}
