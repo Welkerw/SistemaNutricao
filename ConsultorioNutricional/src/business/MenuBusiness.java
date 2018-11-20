@@ -4,7 +4,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import dto.Alimento;
 import dto.Consulta;
+import dto.Dieta;
 import dto.Paciente;
 
 public class MenuBusiness {
@@ -23,7 +25,7 @@ public class MenuBusiness {
 		String nomePaciente = scanner.nextLine();
 		System.out.println("Informa o telefone do paciente:");
 		String telefonePaciente = scanner.nextLine();
-		System.out.println("Informa o endereço do paciente:");
+		System.out.println("Informa o endereï¿½o do paciente:");
 		String enderecoPaciente = scanner.nextLine();
 		System.out.println("Informa o email do paciente:");
 		String emailPaciente = scanner.nextLine();
@@ -45,7 +47,7 @@ public class MenuBusiness {
 		for (Paciente paciente : listaPacientes) {
 			System.out.println("Nome do paciente: " + paciente.getNome());
 			System.out.println("Telefone do paciente: " + paciente.getTelefone());
-			System.out.println("Endereço do paciente: " + paciente.getEndereco());
+			System.out.println("Endereï¿½o do paciente: " + paciente.getEndereco());
 			System.out.println("Email do paciente: " + paciente.getEmail());
 			System.out.println("Data de nascimento do paciente: " + paciente.getDataNascimento());
 			System.out.println("-------------------------");
@@ -59,7 +61,7 @@ public class MenuBusiness {
 		String nomePaciente = scanner.nextLine();
 		System.out.println("Informa o telefone do paciente:");
 		String telefonePaciente = scanner.nextLine();
-		System.out.println("Informa o endereço do paciente:");
+		System.out.println("Informa o endereï¿½o do paciente:");
 		String enderecoPaciente = scanner.nextLine();
 		System.out.println("Informa o email do paciente:");
 		String emailPaciente = scanner.nextLine();
@@ -80,11 +82,11 @@ public class MenuBusiness {
 		String nomePaciente = scanner.nextLine();
 		System.out.println("Informa a data da consulta (mm/dd/YYYY):");
 		Date dataConsulta = new Date(scanner.nextLine());
-		System.out.println("Informa o horário da consulta, ex:16h : ");
+		System.out.println("Informa o horï¿½rio da consulta, ex:16h : ");
 		String horario = scanner.nextLine();
-		System.out.println("Informa as restrições alimentares do paciente:");
+		System.out.println("Informa as restriï¿½ï¿½es alimentares do paciente:");
 		String restricaoAlimentar = scanner.nextLine();
-		System.out.println("Informa a sensação físca do paciente:");
+		System.out.println("Informa a sensaï¿½ï¿½o fï¿½sca do paciente:");
 		String sensacaoFisica = scanner.nextLine();
 		System.out.println("Informa o peso do paciente:");
 		double pesoPaciente = scanner.nextDouble();
@@ -113,11 +115,11 @@ public class MenuBusiness {
 		for (Consulta consulta : listaConsultas) {			
 			System.out.println(cont + " - Nome do paciente: " + consulta.getNomePaciente());
 			System.out.println("Data Consulta: " + consulta.getDataConsulta().toString());
-			System.out.println("Horário da consulta: " + consulta.getHorario());
+			System.out.println("Horï¿½rio da consulta: " + consulta.getHorario());
 			System.out.println("Peso paciente: " + consulta.getPeso());
 			System.out.println("Percentual de gordura: " + consulta.getPercentGorduraCorporal());
-			System.out.println("Restrições alimentares: " + consulta.getRestricoesAlimentares());
-			System.out.println("Sensação física: " + consulta.getSensacaoFisica());
+			System.out.println("Restriï¿½ï¿½es alimentares: " + consulta.getRestricoesAlimentares());
+			System.out.println("Sensaï¿½ï¿½o fï¿½sica: " + consulta.getSensacaoFisica());
 			cont++;
 			System.out.println("-------------------------");
 		}
@@ -127,7 +129,7 @@ public class MenuBusiness {
 	private void removerConsulta() {
 		List<Consulta> consultas = pesquisarConsultasPorPaciente();
 		imprimirConsultas(consultas);
-		System.out.println("Informe o número da consulta que deseja cancelar");
+		System.out.println("Informe o nï¿½mero da consulta que deseja cancelar");
 		int numeroConsulta = scanner.nextInt();
 		
 		if(consultaBusiness.removerConsulta(consultas.get(numeroConsulta - 1)))
@@ -135,6 +137,26 @@ public class MenuBusiness {
 		else
 			System.out.println("Erro ao remover consulta!\n");
 	}
+
+	private void sugerirDieta() {
+		System.out.println("Informe a quantidade mÃ¡xima de calorias para a dieta:");
+		int qtdMaximaCalorias = scanner.nextInt();
+		DietaBusiness dietaBusiness = new DietaBusiness();
+		List<Dieta> dietas = dietaBusiness.montarDietaPorCalorias(qtdMaximaCalorias);
+		for (Dieta dieta: dietas) {
+			System.out.println("-----------");
+			for (Alimento alimento : dieta.getAlimentos()){
+				System.out.print(alimento.getGrupo() + " - ");
+				System.out.print(alimento.getNome() + " - ");
+				System.out.println(alimento.getCaloria() + " calorias");
+			}
+			System.out.println("Total de calorias para esta dieta: "+ dieta.getValorTotalCaloria() + " calorias");
+			System.out.println("-----------");
+
+		}
+	}
+
+
 	
 	public String[] listarOpcoes() {
 		String[] opcoes = new String[9];
@@ -144,9 +166,8 @@ public class MenuBusiness {
 		opcoes[3] = "Cadastrar Consulta";
 		opcoes[4] = "Pesquisar Consulta";
 		opcoes[5] = "Remover Consulta";
-		opcoes[6] = "Cadastrar Dieta";
-		opcoes[7] = "Pesquisar Dieta";
-		opcoes[8] = "Remover Dieta";
+		opcoes[6] = "Sugerir Dieta";
+
 		
 		return opcoes;
 	}
@@ -164,7 +185,7 @@ public class MenuBusiness {
 	public void menuPrincipal() {
 		while (opcao != 0){
 			imprimirOpcoes(listarOpcoes());
-			System.out.println("Informe a opção que deseja");
+			System.out.println("Informe a opï¿½ï¿½o que deseja");
 			opcao = s.nextInt();
 			switch (opcao) {
 			case 1: //novo paciente
@@ -186,18 +207,12 @@ public class MenuBusiness {
 				removerConsulta();
 				break;
 			case 7: //dieta
-				//consultaBusiness.removerConsulta(consultaRemover);
-				break;
-			case 8:
-				//consultaBusiness.removerConsulta(consultaRemover);
-				break;
-			case 9:
-				//consultaBusiness.removerConsulta(consultaRemover);
+				sugerirDieta();
 				break;
 			case 0:
 				System.out.println("Saindo do sistema");
 			default:
-				System.out.println("Opção Inválida!");
+				System.out.println("Opï¿½ï¿½o Invï¿½lida!");
 				menuPrincipal();
 			}
         } 
