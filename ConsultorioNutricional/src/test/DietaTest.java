@@ -29,7 +29,10 @@ public class DietaTest {
 
         List<Dieta> dietaResultado = dieta.montarDietaPorCalorias(qtdMaximaCalorias);
 
-        Assert.assertEquals(dietaEsperada, dietaResultado);
-
+        Assert.assertEquals(dietaEsperada.toArray()[0].getClass().getName(), dietaResultado.toArray()[0].getClass().getName());
+        Assert.assertEquals(dietaEsperada.get(0).getNomePaciente(), dietaResultado.get(0).getNomePaciente());
+        Assert.assertEquals(dietaEsperada.get(0).getAlimentos().get(0).getNome(), dietaResultado.get(0).getAlimentos().get(0).getNome());
+        Assert.assertEquals(dietaEsperada.get(0).getAlimentos().get(1).getNome(), dietaResultado.get(0).getAlimentos().get(1).getNome());
+        Assert.assertEquals(dietaEsperada.get(0).getAlimentos().get(2).getNome(), dietaResultado.get(0).getAlimentos().get(2).getNome());
     }
 }

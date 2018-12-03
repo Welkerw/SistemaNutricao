@@ -4,7 +4,9 @@ import dto.Alimento;
 import dto.Dieta;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DietaBusiness {
 
@@ -19,15 +21,14 @@ public class DietaBusiness {
     public List<Dieta> montarDietaPorCalorias(float qtdMaximaCalorias){
         float somatorio = 0;
         List<Dieta> dietasSugeridas = new ArrayList<Dieta>();
-        int contDieta = 0;
-        List<String> gruposSelecionados = new ArrayList<String>();
 
-        String grupo = "";
-        for (Alimento alimento : (this.alimentos.getAlimentos()).subList(0,3)) {
+        Map<String, List<Alimento>> mapItens = agruparAlimentosPorGrupo(alimentos.getAlimentos());
+
+        for (Alimento alimento : (mapItens.get(alimentos.GRUPOA))) {
             somatorio = alimento.getCaloria();
-            for (Alimento alimentoGrupo2 : this.alimentos.getAlimentos().subList(3,6)){
+            for (Alimento alimentoGrupo2 : (mapItens.get(alimentos.GRUPOB))){
                 if(somatorio + alimentoGrupo2.getCaloria() <= qtdMaximaCalorias){
-                    for (Alimento alimentoGrupo3 : this.alimentos.getAlimentos().subList(6,9)){
+                    for (Alimento alimentoGrupo3 : (mapItens.get(alimentos.GRUPOC))){
                         if(somatorio + alimentoGrupo3.getCaloria() + alimentoGrupo2.getCaloria() <= qtdMaximaCalorias) {
                             somatorio += alimentoGrupo3.getCaloria() + alimentoGrupo2.getCaloria();
                             Dieta dieta = new Dieta();
@@ -45,7 +46,25 @@ public class DietaBusiness {
             }
 
         }
+        
         return dietasSugeridas;
 
     }
+  
+   
+	public Map<String, List<Alimento>> agruparAlimentosPorGrupo(List<Alimento> alimentos) {
+		Map<String, List<Alimento>> map = new HashMap<String, List<Alimento>>();
+
+		for (Alimento item : alimentos) {
+			String nomeGrupo = item.getGrupo();
+
+			if (!map.keySet().contains(nomeGrupo)) {
+				map.put(nomeGrupo, new ArrayList<Alimento>());
+			}
+
+			map.get(nomeGrupo).add(item);
+		}
+
+		return map;
+	}
 }

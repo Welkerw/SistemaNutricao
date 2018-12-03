@@ -2,6 +2,10 @@ package dto;
 
 public class Alimento {
 
+	String GRUPOA = "Carboidrato";
+	String GRUPOB = "Proteína";
+	String GRUPOC = "Fruta";
+	
     public Alimento(String nome, String grupo, float caloria) {
         this.nome = nome;
         this.grupo = grupo;

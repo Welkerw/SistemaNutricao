@@ -11,16 +11,14 @@ public class MenuTest {
 	
 	@Test
 	public void listarOpcoes() {
-		String[] opcoesTeste = new String[9];
+		String[] opcoesTeste = new String[7];
 		opcoesTeste[0] = "Cadastrar Paciente";
 		opcoesTeste[1] = "Pesquisar Paciente";
 		opcoesTeste[2] = "Remover Paciente";
 		opcoesTeste[3] = "Cadastrar Consulta";
 		opcoesTeste[4] = "Pesquisar Consulta";
 		opcoesTeste[5] = "Remover Consulta";
-		opcoesTeste[6] = "Cadastrar Dieta";
-		opcoesTeste[7] = "Pesquisar Dieta";
-		opcoesTeste[8] = "Remover Dieta";
+		opcoesTeste[6] = "Sugerir Dieta";
 		
 		Assert.assertArrayEquals(opcoesTeste, menuBusiness.listarOpcoes());
 	}

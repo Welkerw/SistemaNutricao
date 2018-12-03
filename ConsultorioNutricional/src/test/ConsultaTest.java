@@ -16,6 +16,20 @@ public class ConsultaTest {
 	ConsultaBusiness consultaBusiness = new ConsultaBusiness();
 	
 	@Test
+	public void listaConsultasPaciente() {
+		Paciente paciente = new Paciente("Welker", "Rua Qualquer", "31999999999", "welker@gmail.com", new Date());
+		List<Consulta> resultado = consultaBusiness.listarConsultasPaciente(paciente);
+		List<Consulta> esperado = new ArrayList<Consulta>();
+		esperado.add(new Consulta("Welker", new Date(), "16h", Double.valueOf(80), Double.valueOf(15), "nada consta", "Sem restrição"));
+		
+		Assert.assertEquals(esperado.get(0).getNomePaciente(), resultado.get(0).getNomePaciente());
+		Assert.assertEquals(esperado.get(0).getDataConsulta().getDate(), esperado.get(0).getDataConsulta().getDate());
+		Assert.assertEquals(esperado.get(0).getDataConsulta().getMonth(), esperado.get(0).getDataConsulta().getMonth());
+		Assert.assertEquals(esperado.get(0).getDataConsulta().getYear(), esperado.get(0).getDataConsulta().getYear());
+		Assert.assertEquals(esperado.get(0).getHorario(), resultado.get(0).getHorario());
+	}
+	
+	@Test
 	public void cadastrarConsultaSucesso() {
 		Consulta novaConsulta = new Consulta("Walace", new Date(), "16h", Double.valueOf(80), Double.valueOf(15), "nada consta", "Sem restrição");
 		
@@ -56,17 +70,6 @@ public class ConsultaTest {
 		
 		Assert.assertFalse(consultaBusiness.removerConsulta(novaConsulta));
 	}
-	@Test
-	public void listaConsultasPaciente() {
-		Paciente paciente = new Paciente("Welker", "Rua Qualquer", "31999999999", "welker@gmail.com", new Date());
-		List<Consulta> resultado = consultaBusiness.listarConsultasPaciente(paciente);
-		List<Consulta> esperado = new ArrayList<Consulta>();
-		esperado.add(new Consulta("Welker", new Date(), "16h", Double.valueOf(80), Double.valueOf(15), "nada consta", "Sem restrição"));
-		
-		Assert.assertEquals(esperado.size(), resultado.size());
-		Assert.assertEquals(esperado.get(0).getNomePaciente(), resultado.get(0).getNomePaciente());
-		Assert.assertEquals(esperado.get(0).getDataConsulta(), resultado.get(0).getDataConsulta());
-		Assert.assertEquals(esperado.get(0).getHorario(), resultado.get(0).getHorario());
-	}
+	
 	
 }

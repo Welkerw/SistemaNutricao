@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AlimentoBusiness {
+	
+	public static final String GRUPOA = "Carboidrato";
+	public static final String GRUPOB = "Proteína";
+	public static final String GRUPOC = "Fruta";
+	
+	
     public List<Alimento> getAlimentos() {
         return alimentos;
     }
@@ -14,17 +20,17 @@ public class AlimentoBusiness {
 
     public AlimentoBusiness(){
         alimentos = new ArrayList<Alimento>();
-        alimentos.add(new Alimento("Batata doce", "Carboidratos", 100));
-        alimentos.add(new Alimento("Arroz integral", "Carboidratos", 150));
-        alimentos.add(new Alimento("Inhame", "Carboidratos", 200));
+        alimentos.add(new Alimento("Batata doce", "Carboidrato", 100));
+        alimentos.add(new Alimento("Arroz integral", "Carboidrato", 150));
+        alimentos.add(new Alimento("Inhame", "Carboidrato", 200));
 
-        alimentos.add(new Alimento("Ovo cozido", "ProteÃ­na", 150));
-        alimentos.add(new Alimento("Frango Grelhado", "ProteÃ­na", 100));
-        alimentos.add(new Alimento("Carne cozida", "ProteÃ­na", 150));
+        alimentos.add(new Alimento("Ovo cozido", "Proteína", 150));
+        alimentos.add(new Alimento("Frango Grelhado", "Proteína", 100));
+        alimentos.add(new Alimento("Carne cozida", "Proteína", 150));
 
-        alimentos.add(new Alimento("Banana", "Frutas", 87));
-        alimentos.add(new Alimento("MaÃ§Ã£", "Frutas", 48));
-        alimentos.add(new Alimento("Abacaxi", "Frutas", 90));
+        alimentos.add(new Alimento("Banana", "Fruta", 87));
+        alimentos.add(new Alimento("Maçã", "Fruta", 48));
+        alimentos.add(new Alimento("Abacaxi", "Fruta", 90));
     }
 
 
